@@ -1,0 +1,59 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ModbusGrpc";
+
+package modbus;
+
+service ModbusService {
+    rpc Connect(ConnectRequest) returns (ConnectResponse);
+    rpc Disconnect(DisconnectRequest) returns (DisconnectResponse);
+    rpc GetStatus(StatusRequest) returns (StatusResponse);
+
+    rpc ReadHoldingRegisters(ReadHoldingRegistersRequest)
+        returns (ReadHoldingRegistersResponse);
+
+    rpc WriteMultipleRegisters(WriteMultipleRegistersRequest)
+        returns (WriteMultipleRegistersResponse);
+}
+
+message ConnectRequest {
+}
+
+message ConnectResponse {
+    bool connected = 1;
+    string message = 2;
+}
+
+message DisconnectRequest {
+}
+
+message DisconnectResponse {
+    bool connected = 1;
+    string message = 2;
+}
+
+message StatusRequest {
+}
+
+message StatusResponse {
+    bool connected = 1;
+}
+
+message ReadHoldingRegistersRequest {
+    int32 start_address = 1;
+    int32 quantity = 2;
+}
+
+message ReadHoldingRegistersResponse {
+    repeated int32 registers = 1;
+}
+
+message WriteMultipleRegistersRequest {
+    int32 address = 1;
+    repeated int32 values = 2;
+}
+
+message WriteMultipleRegistersResponse {
+    bool success = 1;
+    string message = 2;
+}

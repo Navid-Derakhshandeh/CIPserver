@@ -1,0 +1,2 @@
+obj\Debug\net8.0\Protocol/Modbus.cs \
+obj\Debug\net8.0\Protocol/ModbusGrpc.cs: Protocol/modbus.proto
