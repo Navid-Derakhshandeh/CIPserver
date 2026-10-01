@@ -1,0 +1,69 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Visual Studio Code
+.vscode/
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Test results
+TestResults/
+*.trx
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Runtime files
+*.pid
+*.pidb
+
+# Generated files
+Generated/
+wwwroot/lib/
+
+# ASP.NET development certificates
+*.pfx
+
+# Local configuration
+appsettings.Local.json
+appsettings.Development.json
+
+# User-specific secrets
+secrets.json
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Publish output
+publish/
+PublishOutput/
+
+# Temporary files
+*.tmp
+*.temp
