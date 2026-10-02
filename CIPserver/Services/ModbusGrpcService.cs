@@ -12,15 +12,11 @@ namespace ModbusGrpc
         ModbusService.ModbusServiceBase
     {
         private readonly ModbusModule.ModbusService _modbus;
-
-
         public ModbusGrpcService(
             ModbusModule.ModbusService modbus)
         {
             _modbus = modbus;
         }
-
-
         public override Task<ConnectResponse> Connect(
             ConnectRequest request,
             ServerCallContext context)
@@ -29,11 +25,7 @@ namespace ModbusGrpc
             {
                 Console.WriteLine(
                     $"Modbus Connect request from: {context.GetHttpContext().User.Identity?.Name}");
-
-
                 _modbus.Connect();
-
-
                 return Task.FromResult(
                     new ConnectResponse
                     {
@@ -49,8 +41,6 @@ namespace ModbusGrpc
                         ex.Message));
             }
         }
-
-
         public override Task<DisconnectResponse> Disconnect(
             DisconnectRequest request,
             ServerCallContext context)
@@ -58,8 +48,6 @@ namespace ModbusGrpc
             try
             {
                 _modbus.Disconnect();
-
-
                 return Task.FromResult(
                     new DisconnectResponse
                     {
@@ -75,8 +63,6 @@ namespace ModbusGrpc
                         ex.Message));
             }
         }
-
-
         public override Task<StatusResponse> GetStatus(
             StatusRequest request,
             ServerCallContext context)
@@ -87,8 +73,6 @@ namespace ModbusGrpc
                     Connected = _modbus.IsConnected
                 });
         }
-
-
         public override Task<ReadHoldingRegistersResponse>
             ReadHoldingRegisters(
                 ReadHoldingRegistersRequest request,
@@ -100,15 +84,9 @@ namespace ModbusGrpc
                     _modbus.ReadHoldingRegisters(
                         request.StartAddress,
                         request.Quantity);
-
-
                 var response =
                     new ReadHoldingRegistersResponse();
-
-
                 response.Registers.AddRange(registers);
-
-
                 return Task.FromResult(response);
             }
             catch (Exception ex)
@@ -119,8 +97,6 @@ namespace ModbusGrpc
                         ex.Message));
             }
         }
-
-
         public override Task<WriteMultipleRegistersResponse>
             WriteMultipleRegisters(
                 WriteMultipleRegistersRequest request,
@@ -130,13 +106,9 @@ namespace ModbusGrpc
             {
                 int[] values =
                     request.Values.ToArray();
-
-
                 _modbus.WriteMultipleRegisters(
                     request.Address,
                     values);
-
-
                 return Task.FromResult(
                     new WriteMultipleRegistersResponse
                     {

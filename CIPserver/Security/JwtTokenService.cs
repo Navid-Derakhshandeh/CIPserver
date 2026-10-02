@@ -13,12 +13,10 @@ namespace Security.Authentication
     public class JwtTokenService
     {
         private readonly string _secret;
-
         public JwtTokenService(string secret)
         {
             _secret = secret;
         }
-
         public string CreateToken(User user)
         {
             var claims = new[]
@@ -26,22 +24,18 @@ namespace Security.Authentication
             new Claim(
                 ClaimTypes.NameIdentifier,
                 user.Id.ToString()),
-
             new Claim(
                 ClaimTypes.Name,
                 user.Username)
         };
-
             var key =
                 new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(
                         _secret));
-
             var credentials =
                 new SigningCredentials(
                     key,
                     SecurityAlgorithms.HmacSha256);
-
             var token =
                 new JwtSecurityToken(
                     claims: claims,
@@ -49,7 +43,6 @@ namespace Security.Authentication
                         DateTime.UtcNow.AddHours(8),
                     signingCredentials:
                         credentials);
-
             return new JwtSecurityTokenHandler()
                 .WriteToken(token);
         }
